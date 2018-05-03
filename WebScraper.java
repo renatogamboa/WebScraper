@@ -19,7 +19,11 @@ public class WebScraper {
 
         // Get path to webpage document and user agent
         try {
+
+            // Enter Webpage link here
             Document doc = Jsoup.connect("http://www.metacritic.com/browse/games/score/metascore/year/all/filtered").userAgent("Mozilla/17.0").get();
+
+            // Paste Div element containing web content
             Elements temp = doc.select("div.product_item.product_title");
 
             // Increment variable for game ranks
@@ -28,22 +32,16 @@ public class WebScraper {
             // Enhanced For Loop to parse through game titles
             for (Element gameList: temp)
             {
-
                 i++;
-                System.out.println(i + ": " + gameList.getElementsByTag("a").first().text());
 
+                // Print out games in order from the anchor tag contained within the desired DIV
+                System.out.println(i + ": " + gameList.getElementsByTag("a").first().text());
 
             }
         } catch (IOException e){
-            System.out.println("ERROR");
 
             //TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-
-
-
-
-
 }
